@@ -206,6 +206,12 @@ public class ObjectNavFragment extends CameraFragment {
                     Enums.SpeedMode.getByID(preferencesManager.getSpeedMode()))));
 
     binding.autoSwitch.setOnClickListener(v -> setNetworkEnabled(binding.autoSwitch.isChecked()));
+    binding.dynamicSpeed.setChecked(preferencesManager.getDynamicSpeed());
+    binding.dynamicSpeed.setOnClickListener(
+        v -> {
+          preferencesManager.setDynamicSpeed(binding.dynamicSpeed.isChecked());
+          tracker.setDynamicSpeed(preferencesManager.getDynamicSpeed());
+        });
   }
 
   private void updateCropImageInfo() {
@@ -223,6 +229,7 @@ public class ObjectNavFragment extends CameraFragment {
     borderedText.setTypeface(Typeface.MONOSPACE);
 
     tracker = new MultiBoxTracker(requireContext());
+    tracker.setDynamicSpeed(preferencesManager.getDynamicSpeed());
 
     Timber.i("Camera orientation relative to screen canvas: %d", sensorOrientation);
 
@@ -378,9 +385,10 @@ public class ObjectNavFragment extends CameraFragment {
 
   private void setNetworkEnabled(boolean b) {
     binding.autoSwitch.setChecked(b);
+
     binding.controllerContainer.controlMode.setEnabled(!b);
     binding.controllerContainer.driveMode.setEnabled(!b);
-    binding.controllerContainer.speedInfo.setEnabled(!b);
+    binding.controllerContainer.speedMode.setEnabled(!b);
 
     binding.controllerContainer.controlMode.setAlpha(b ? 0.5f : 1f);
     binding.controllerContainer.driveMode.setAlpha(b ? 0.5f : 1f);
