@@ -1,0 +1,46 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/permissions">
+
+        <SwitchPreferenceCompat
+            app:key="camera"
+            app:title="Camera" />
+
+        <SwitchPreferenceCompat
+            app:key="storage"
+            app:title="Storage" />
+
+        <SwitchPreferenceCompat
+            app:key="location"
+            app:title="Location" />
+
+        <SwitchPreferenceCompat
+            app:key="mic"
+            app:title="Microphone" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Video Streaming">
+
+        <ListPreference
+            app:defaultValue="RTSP"
+            app:entries="@array/stream_server"
+            app:entryValues="@array/stream_server"
+            app:key="video_server"
+            app:title="Stream Mode"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Connection Type">
+
+        <ListPreference
+            app:defaultValue="USB"
+            app:entries="@array/connection_type"
+            app:entryValues="@array/connection_type"
+            app:key="connection_type"
+            app:title="Connectivity Mode"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

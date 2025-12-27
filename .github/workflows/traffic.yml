@@ -13,14 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     
     # Check we are not on a fork
-    if: github.repository == 'isl-org/OpenBot'
+    if: github.repository == 'ob-f/OpenBot'
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 
     # Gets the old traffic from last successful artifact
     - name: Download old traffic
-      uses: dawidd6/action-download-artifact@v2
+      uses: dawidd6/action-download-artifact@v6
       with:
         workflow: traffic.yml
         workflow_conclusion: success
@@ -35,7 +35,7 @@ jobs:
       
     # Uploads new traffic as artifact 
     - name: Upload new traffic
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: traffic
         path: ./traffic/ 
